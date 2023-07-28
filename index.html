@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Drum Kit</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        text-align: center;
+        background-color: #283149;
+      }
+
+      h1 {
+        font-size: 5rem;
+        color: #dbedf3;
+        font-family: "Arvo", cursive;
+        text-shadow: 3px 0 #da0463;
+      }
+
+      footer {
+        color: #dbedf3;
+        font-family: sans-serif;
+      }
+
+      .w {
+        background-image: url("drumimg/crash.png");
+      }
+
+      .a {
+        background-image: url("drumimg/kick.png");
+      }
+
+      .s {
+        background-image: url("drumimg/snare.png");
+      }
+
+      .d {
+        background-image: url("drumimg/tom1.png");
+      }
+
+      .j {
+        background-image: url("drumimg/tom2.png");
+      }
+
+      .k {
+        background-image: url("drumimg/tom3.png");
+      }
+
+      .l {
+        background-image: url("drumimg/tom4.png");
+      }
+
+      .set {
+        margin: 10% auto;
+      }
+
+      .game-over {
+        background-color: red;
+        opacity: 0.8;
+      }
+
+      .pressed {
+        box-shadow: 0 3px 4px 0 #dbedf3;
+        opacity: 0.5;
+      }
+
+      .red {
+        color: red;
+      }
+
+      .drum {
+        outline: none;
+        border: 10px solid #404b69;
+        font-size: 5rem;
+        font-family: "Arvo", cursive;
+        line-height: 2;
+        font-weight: 900;
+        color: #da0463;
+        text-shadow: 3px 0 #dbedf3;
+        border-radius: 15px;
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        text-align: center;
+        margin: 10px;
+        background-color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 id="title">Drum 🥁 Kit</h1>
+    <div class="set">
+      <button class="w drum">w</button>
+      <button class="a drum">a</button>
+      <button class="s drum">s</button>
+      <button class="d drum">d</button>
+      <button class="j drum">j</button>
+      <button class="k drum">k</button>
+      <button class="l drum">l</button>
+    </div>
+
+    <footer>Made with ❤️ in London.</footer>
+    <script>
+      let buttons = document.querySelectorAll(".drum");
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function () {
+          let buttonINH = this.innerHTML;
+          playSound(buttonINH);
+          animate(buttonINH);
+        });
+      }
+      document.addEventListener("keydown", function (event) {
+        let thekey = event.key;
+        playSound(thekey);
+        animate(thekey);
+      });
+      function playSound(value) {
+        switch (value) {
+          case "w":
+            let audio7 = new Audio("drumsou/crash.mp3");
+            audio7.play();
+
+            break;
+          case "s":
+            let audio1 = new Audio("drumsou/snare.mp3");
+            audio1.play();
+
+            break;
+          case "d":
+            let audio2 = new Audio("drumsou/tom-1.mp3");
+            audio2.play();
+
+            break;
+          case "j":
+            let audio3 = new Audio("drumsou/tom-2.mp3");
+            audio3.play();
+            break;
+          case "k":
+            let audio4 = new Audio("drumsou/tom-3.mp3");
+            audio4.play();
+            break;
+          case "l":
+            let audio5 = new Audio("drumsou/tom-4.mp3");
+            audio5.play();
+
+            break;
+          case "a":
+            let audio6 = new Audio("drumsou/kick-bass.mp3");
+            audio6.play();
+            break;
+
+          default:
+            break;
+        }
+      }
+      function animate(valueUsed) {
+        let theValue = document.querySelector("." + valueUsed);
+        theValue.classList.add("pressed");
+        setTimeout(function () {
+          theValue.classList.remove("pressed");
+        }, 100);
+
+        console.log(theValue);
+      }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  </body>
+</html>
